@@ -1,193 +1,206 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maquillaje Glamour</title>
-  <style>
-    :root {
-      --rosa: #fa303a;
-      --rosa-claro: #ffe4ec;
-      --gris: #f5f5f5;
-      --negro: #222;
-      --blanco: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maquillaje Glamour</title>
+<style>
+:root {
+  --oro: #d4af37; /* Color dorado elegante */
+  --gris-oscuro: #333333; /* Gris oscuro sofisticado */
+  --gris-claro: #f3f3f3; /* Gris suave y elegante */
+  --blanco: #fff;
+  --negro: #222;
+  --azul-acero: #4b6e88; /* Azul suave, combina bien con tonos cálidos y fríos */
+}
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--gris);
-      color: var(--negro);
-    }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--gris-claro);
+  color: var(--negro);
+}
 
-    header {
-      background-color: var(--rosa);
-      color: var(--blanco);
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-    }
+header {
+  background-color: var(--gris-oscuro);
+  color: var(--blanco);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
 
-    .logo {
-      max-width: 100%;
-      height: auto;
-      max-height: 150px;
-      display: block;
-      margin: 0 auto 10px auto;
-      border-radius: 100%;
-    }
+.logo {
+  max-width: 100%;
+  height: auto;
+  max-height: 150px;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 300%;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: var(--rosa-claro);
-      padding: 1rem;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: var(--gris-claro);
+  padding: 1rem;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
-    nav a {
-      color: var(--negro);
-      text-decoration: none;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
+nav a {
+  color: var(--gris-oscuro);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
 
-    nav a:hover {
-      background-color: var(--rosa);
-      color: white;
-    }
+nav a:hover {
+  background-color: var(--oro);
+  color: var(--blanco);
+}
 
-    section {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
+section {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    h2 {
-      color: var(--rosa);
-    }
+h2 {
+  color: var(--gris-oscuro);
+}
 
-    footer {
-      background-color: var(--rosa);
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
+footer {
+  background-color: var(--gris-oscuro);
+  color: var(--blanco);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
 
-    @media (max-width: 768px) {
-      .logo {
-        max-height: 120px;
-      }
+/* Barra de Anuncios */
+#announcement-bar {
+  background-color: var(--azul-acero);
+  color: var(--blanco);
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
 
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+#announcement-bar p {
+  margin: 0;
+}
 
-    @media (max-width: 480px) {
-      .logo {
-        max-height: 100px;
-      }
+.announcement-bar__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
-      header {
-        padding: 1rem;
-      }
-    }
-  </style>
+.announcement-bar__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Colores y efectos más elegantes */
+#announcement-bar button {
+  background: none;
+  border: none;
+  color: var(--oro);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+#announcement-bar button:hover {
+  background-color: var(--oro);
+  color: var(--blanco);
+}
+
+@media (max-width: 768px) {
+  .logo {
+    max-height: 120px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    max-height: 100px;
+  }
+
+  header {
+    padding: 1rem;
+  }
+}
+</style>
 </head>
 <body>
-<div id="shopify-section-announcement-bar" class="shopify-section shopify-section--announcement-bar">
-    <style>
-      :root {
-        --enable-sticky-announcement-bar: 1;
-      }
 
-      #shopify-section-announcement-bar {
-        --heading-color: 255, 255, 255;
-        --text-color: 255, 255, 255;
-        --primary-button-background: 40, 40, 40;
-        --primary-button-text-color: 255, 255, 255;
-        --section-background: 40, 40, 40;
-        z-index: 5;
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-      }
-
-      @media screen and (min-width: 741px) {
-        :root {
-          --enable-sticky-announcement-bar: 1;
-        }
-
-        #shopify-section-announcement-bar {
-          position: -webkit-sticky;
-          position: sticky;
-        }
-      }
-    </style>
-    <section>
-      <announcement-bar auto-play="" cycle-speed="5" class="announcement-bar announcement-bar--multiple">
-        <button data-action="prev" class="tap-area tap-area--large">
-          <span class="visually-hidden">Anterior</span>
-          <svg fill="none" focusable="false" width="12" height="10" class="icon icon--nav-arrow-left-small  icon--direction-aware " viewBox="0 0 12 10">
-            <path d="M12 5L2.25 5M2.25 5L6.15 9.16M2.25 5L6.15 0.840001" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </button>
-        <div class="announcement-bar__list">
-          <announcement-bar-item class="announcement-bar__item" hidden="">
-            <div class="announcement-bar__message ">
-              <p>¡Oferta especial! 20% de descuento en todos los productos</p>
-            </div>
-          </announcement-bar-item>
-          <announcement-bar-item class="announcement-bar__item">
-            <div class="announcement-bar__message ">
-              <p>¡Nuevos productos llegaron! Descubre nuestras últimas adquisiciones</p>
-            </div>
-          </announcement-bar-item>
-        </div>
-        <button data-action="next" class="tap-area tap-area--large">
-          <span class="visually-hidden">Siguiente</span>
-          <svg fill="none" focusable="false" width="12" height="10" class="icon icon--nav-arrow-right-small  icon--direction-aware " viewBox="0 0 12 10">
-            <path d="M-3.63679e-07 5L9.75 5M9.75 5L5.85 9.16M9.75 5L5.85 0.840001" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </button>
-      </announcement-bar>
-    </section>
-
-    <script>
-      document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-announcement-bar').clientHeight + 'px');
-    </script>
-    <style>
-      #shopify-section-announcement-bar .announcement-bar {
-        height: 60px;
-        font-size: 20px;
-      }
-    </style>
+<!-- Barra de Anuncios -->
+<div id="announcement-bar">
+  <div class="announcement-bar__list">
+    <div class="announcement-bar__item">
+      <p>RECOGE EN TU SUCURSAL MÁS CERCANA DESDE $299</p>
+    </div>
+    <div class="announcement-bar__item">
+      <p>ENVÍO GRATIS EN COMPRAS A PARTIR DE $599</p>
+    </div>
   </div>
+</div>
 
-  <header>
-    <img src="logo1.jpg" alt="Logo Bella" class="logo">
-    <h1>Maquillaje Glamour 💄</h1>
-    <p>Resalta tu belleza con estilo</p>
-  </header>
+<header>
+  <img src="logo1.jpg" alt="Logo Bella" class="logo">
+  <h1>Maquillaje Glamour 💄</h1>
+  <p>Resalta tu belleza con estilo</p>
+</header>
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#productos">Productos</a>
-    <a href="#consejos">Consejos</a>
-    <a href="#tips">Tips</a>
-    <a href="#blog">Blog</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#productos">Productos</a>
+  <a href="#consejos">Consejos</a>
+  <a href="#tips">Tips</a>
+  <a href="#blog">Blog</a>
+  <a href="#contacto">Contacto</a>
+</nav>
 
-  <footer>
-    &copy; 2025 Maquillaje Glamour | Síguenos en Instagram @maquillajeglamour
-  </footer>
+<section>
+  <!-- Aquí puedes agregar el contenido de productos, consejos, etc. -->
+</section>
+
+<footer>
+  &copy; 2025 Maquillaje Glamour | Síguenos en Instagram @maquillajeglamour
+</footer>
+
+<script>
+  let currentIndex = 0;
+  const messages = [
+    "RECOGE EN TU SUCURSAL MÁS CERCANA DESDE $299",
+    "ENVÍO GRATIS EN COMPRAS A PARTIR DE $599"
+  ];
+
+  function changeMessage() {
+    currentIndex = (currentIndex + 1) % messages.length;
+    const items = document.querySelectorAll('.announcement-bar__item p');
+    items.forEach((item, index) => {
+      item.textContent = messages[(currentIndex + index) % messages.length];
+    });
+  }
+
+  // Cambiar mensaje automáticamente cada 3 segundos
+  setInterval(changeMessage, 3000);
+</script>
 
 </body>
 </html>
