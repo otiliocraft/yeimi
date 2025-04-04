@@ -101,6 +101,74 @@
   </style>
 </head>
 <body>
+<div id="shopify-section-announcement-bar" class="shopify-section shopify-section--announcement-bar">
+    <style>
+      :root {
+        --enable-sticky-announcement-bar: 1;
+      }
+
+      #shopify-section-announcement-bar {
+        --heading-color: 255, 255, 255;
+        --text-color: 255, 255, 255;
+        --primary-button-background: 40, 40, 40;
+        --primary-button-text-color: 255, 255, 255;
+        --section-background: 40, 40, 40;
+        z-index: 5;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+      }
+
+      @media screen and (min-width: 741px) {
+        :root {
+          --enable-sticky-announcement-bar: 1;
+        }
+
+        #shopify-section-announcement-bar {
+          position: -webkit-sticky;
+          position: sticky;
+        }
+      }
+    </style>
+    <section>
+      <announcement-bar auto-play="" cycle-speed="5" class="announcement-bar announcement-bar--multiple">
+        <button data-action="prev" class="tap-area tap-area--large">
+          <span class="visually-hidden">Anterior</span>
+          <svg fill="none" focusable="false" width="12" height="10" class="icon icon--nav-arrow-left-small  icon--direction-aware " viewBox="0 0 12 10">
+            <path d="M12 5L2.25 5M2.25 5L6.15 9.16M2.25 5L6.15 0.840001" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </button>
+        <div class="announcement-bar__list">
+          <announcement-bar-item class="announcement-bar__item" hidden="">
+            <div class="announcement-bar__message ">
+              <p>¡Oferta especial! 20% de descuento en todos los productos</p>
+            </div>
+          </announcement-bar-item>
+          <announcement-bar-item class="announcement-bar__item">
+            <div class="announcement-bar__message ">
+              <p>¡Nuevos productos llegaron! Descubre nuestras últimas adquisiciones</p>
+            </div>
+          </announcement-bar-item>
+        </div>
+        <button data-action="next" class="tap-area tap-area--large">
+          <span class="visually-hidden">Siguiente</span>
+          <svg fill="none" focusable="false" width="12" height="10" class="icon icon--nav-arrow-right-small  icon--direction-aware " viewBox="0 0 12 10">
+            <path d="M-3.63679e-07 5L9.75 5M9.75 5L5.85 9.16M9.75 5L5.85 0.840001" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </button>
+      </announcement-bar>
+    </section>
+
+    <script>
+      document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-announcement-bar').clientHeight + 'px');
+    </script>
+    <style>
+      #shopify-section-announcement-bar .announcement-bar {
+        height: 60px;
+        font-size: 20px;
+      }
+    </style>
+  </div>
 
   <header>
     <img src="logo1.jpg" alt="Logo Bella" class="logo">
