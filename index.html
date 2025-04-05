@@ -21,6 +21,32 @@ body {
   color: var(--negro);
 }
 
+/* 🔔 Anuncio animado */
+#announcement-bar {
+  background-color: var(--azul-acero);
+  color: var(--blanco);
+  text-align: center;
+  padding: 12px 0;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  overflow: hidden;
+  height: 40px;
+}
+
+#announcement-bar p {
+  margin: 0;
+  opacity: 0;
+  animation: fadeMessage 1s ease forwards;
+}
+
+@keyframes fadeMessage {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Encabezado */
 header {
   background-color: var(--gris-oscuro);
   color: var(--blanco);
@@ -36,7 +62,7 @@ header {
   max-height: 150px;
   display: block;
   margin: 0 auto 10px auto;
-  border-radius: 200%;
+  border-radius: 300%;
   animation: fadeInDown 1.5s ease forwards;
 }
 
@@ -46,13 +72,10 @@ header h1, header p {
   animation: fadeInUp 1s ease forwards;
 }
 
-header h1 {
-  animation-delay: 0.5s;
-}
-header p {
-  animation-delay: 0.8s;
-}
+header h1 { animation-delay: 0.5s; }
+header p { animation-delay: 0.8s; }
 
+/* Navegación */
 nav {
   display: flex;
   justify-content: center;
@@ -83,27 +106,7 @@ section {
   margin: auto;
 }
 
-footer {
-  background-color: var(--gris-oscuro);
-  color: var(--blanco);
-  text-align: center;
-  padding: 1.5rem;
-  margin-top: 2rem;
-}
-
-/* Barra de anuncio */
-#announcement-bar {
-  background-color: var(--azul-acero);
-  color: var(--blanco);
-  padding: 10px 0;
-  text-align: center;
-  font-size: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-}
-
-/* Animación: Fade In cuando haces scroll */
+/* Animaciones de entrada */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -115,58 +118,47 @@ footer {
   transform: none;
 }
 
-/* Animaciones clave */
+/* Footer */
+footer {
+  background-color: var(--gris-oscuro);
+  color: var(--blanco);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Keyframes */
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .logo {
-    max-height: 120px;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
+  .logo { max-height: 120px; }
+  nav { flex-direction: column; align-items: center; }
 }
 
 @media (max-width: 480px) {
-  .logo {
-    max-height: 100px;
-  }
-
-  header {
-    padding: 1rem;
-  }
+  .logo { max-height: 100px; }
+  header { padding: 1rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Barra de anuncio -->
+<!-- 🔔 Anuncio animado -->
 <div id="announcement-bar">
-  <p>ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 | RECOGE EN SUCURSAL DESDE $299</p>
+  <p id="announcement-message">Cargando anuncios...</p>
 </div>
 
 <header>
   <img src="logo1.jpg" alt="Logo Bella" class="logo">
-  <h1>Maquillaje Glamour 💄</h1>
+  <h1>Maquillaje Bella 💄</h1>
   <p>Resalta tu belleza con estilo</p>
 </header>
 
@@ -179,7 +171,6 @@ footer {
   <a href="#contacto">Contacto</a>
 </nav>
 
-<!-- Sección con fade-in al hacer scroll -->
 <section class="fade-in">
   <h2>Bienvenida a tu espacio de belleza ✨</h2>
   <p>Explora productos, tips y todo lo que necesitas para brillar cada día.</p>
@@ -194,11 +185,11 @@ footer {
   &copy; 2025 Maquillaje Glamour | Síguenos en Instagram @maquillajeglamour
 </footer>
 
-<!-- Script para activar fade-in al hacer scroll -->
+<!-- 🎯 Script para scroll animado y anuncios -->
 <script>
+// Animación al hacer scroll
 document.addEventListener("DOMContentLoaded", function() {
   const elements = document.querySelectorAll(".fade-in");
-
   function onScroll() {
     elements.forEach(el => {
       const rect = el.getBoundingClientRect();
@@ -207,10 +198,34 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
-
   window.addEventListener("scroll", onScroll);
-  onScroll(); // Ejecutar al cargar
+  onScroll();
 });
+
+// Anuncios rotativos
+const messages = [
+  "✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨",
+  "📦 RECOGE EN SUCURSAL DESDE $299 📦",
+  "💄 NUEVAS COLECCIONES DISPONIBLES AHORA 💄",
+  "🎁 DESCUENTOS EXCLUSIVOS SOLO ESTA SEMANA 🎁"
+];
+let index = 0;
+const messageEl = document.getElementById("announcement-message");
+
+function showMessage() {
+  messageEl.style.opacity = 0;
+  setTimeout(() => {
+    messageEl.textContent = messages[index];
+    messageEl.style.animation = "none";
+    void messageEl.offsetWidth; // Reinicia animación
+    messageEl.style.animation = null;
+    index = (index + 1) % messages.length;
+    messageEl.style.opacity = 1;
+  }, 300);
+}
+
+showMessage();
+setInterval(showMessage, 4000); // cambia cada 4 segundos
 </script>
 
 </body>
