@@ -1,159 +1,324 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Maquillaje Glamour</title>
-<style>
-:root {
-  --oro: #d4af37;
-  --gris-oscuro: #333333;
-  --gris-claro: #f3f3f3;
-  --blanco: #fff;
-  --negro: #222;
-  --azul-acero: #4b6e88;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maquillaje Bella</title>
+  <style>
+    /* Variables de colores */
+    :root {
+      --oro: #d4af37;
+      --gris-oscuro: #333333;
+      --gris-claro: #f3f3f3;
+      --blanco: #fff;
+      --negro: #222;
+      --azul-acero: #4b6e88;
+      --rojo-intenso: #e02020;
+      --verde-fresco: #28a745;
+      --gris-medio: #cccccc;
+      --rosado-suave: #f9c1c1;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--gris-claro);
-  color: var(--negro);
-}
+    /* Estilos generales del body */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--gris-claro);
+      color: var(--negro);
+      padding-bottom: 80px; /* Espacio para el footer */
+    }
 
-/* 🔔 Anuncio animado */
-#announcement-bar {
-  background-color: var(--azul-acero);
-  color: var(--blanco);
-  text-align: center;
-  padding: 12px 0;
-  font-size: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  overflow: hidden;
-  height: 40px;
-}
+    /* Estilo del anuncio fijo en la parte superior */
+    #announcement-bar {
+      background-color: var(--azul-acero);
+      color: var(--blanco);
+      text-align: center;
+      padding: 12px 0;
+      font-size: 16px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      height: 40px;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
 
-#announcement-bar p {
-  margin: 0;
-  opacity: 0;
-  animation: fadeMessage 1s ease forwards;
-}
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-@keyframes fadeMessage {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
+    /* Animación de fade-in para bienvenida y favoritos */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-/* Encabezado */
-header {
-  background-color: var(--gris-oscuro);
-  color: var(--blanco);
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
+    /* Encabezado */
+    header {
+      background-color: var(--gris-oscuro);
+      color: var(--blanco);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-.logo {
-  max-width: 100%;
-  height: auto;
-  max-height: 150px;
-  display: block;
-  margin: 0 auto 10px auto;
-  border-radius: 300%;
-  animation: fadeInDown 1.5s ease forwards;
-}
+    header .logo {
+      width: 150px;  /* Controla el tamaño del logo */
+      height: auto;
+      margin-bottom: 150px;
+      display: block;
+      margin: 0 auto 10px auto;
+      border-radius: 300%;
+      animation: bounce 2s ease infinite; /* Animación de rebote */
+    }
 
-header h1, header p {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease forwards;
-}
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-15px); /* Subir */
+      }
+      50% {
+        transform: translateY(0); /* Volver a la posición inicial */
+      }
+      75% {
+        transform: translateY(-7px); /* Subir un poco menos */
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
 
-header h1 { animation-delay: 0.5s; }
-header p { animation-delay: 0.8s; }
+    header h1, header p {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
 
-/* Navegación */
-nav {
+    header h1 { animation-delay: 0.5s; }
+    header p { animation-delay: 0.8s; }
+
+    /* Animación de texto de navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--gris-claro);
+      padding: 1rem;
+      flex-wrap: wrap;
+      gap: 15px;
+      animation: slideDown 0.5s ease-out forwards;
+    }
+
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    nav a {
+      color: var(--gris-oscuro);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      background-color: var(--oro);
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: bottom right;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    nav a:hover {
+      color: var(--blanco);
+      background-color: var(--azul-acero);
+      transform: translateY(-5px);
+    }
+
+    /* Estilos para el footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--gris-oscuro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 20px;
+      font-size: 16px;
+      box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-top: 3px solid var(--oro);
+    }
+
+    footer a {
+      color: var(--oro);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--blanco);
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer p span {
+      color: var(--oro);
+    }
+
+    /* Sección de bienvenida con animación */
+    #welcome-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    /* Sección de favoritos con animación */
+    .favorites-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .product-card {
+      background-color: var(--blanco);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card img {
+      width: 100px;
+      height: auto;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-options {
   display: flex;
   justify-content: center;
-  background-color: var(--gris-claro);
-  padding: 1rem;
+  gap: 20px;
+  margin-top: 20px;
   flex-wrap: wrap;
-  gap: 15px;
 }
 
-nav a {
-  color: var(--gris-oscuro);
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
+.product-option {
+  background-color: var(--rosado-suave);
+  padding: 20px;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 
-nav a:hover {
+.product-option:hover {
   background-color: var(--oro);
   color: var(--blanco);
   transform: scale(1.05);
 }
 
-section {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
+.product-option .product-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
-/* Animaciones de entrada */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+.product-option h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
+.product-option p {
+  font-size: 14px;
+  color: var(--gris-oscuro);
 }
 
-/* Footer */
-footer {
-  background-color: var(--gris-oscuro);
-  color: var(--blanco);
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: var(--blanco);
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
+    }
+    .modal-content h2 {
   text-align: center;
-  padding: 1.5rem;
-  margin-top: 2rem;
+  color: var(--oro);
+  margin-bottom: 20px;
 }
 
-/* Keyframes */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
+    .close {
+      color: var(--gris-oscuro);
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .logo { max-height: 120px; }
-  nav { flex-direction: column; align-items: center; }
-}
+    .close:hover,
+    .close:focus {
+      color: var(--rojo-intenso);
+    }
 
-@media (max-width: 480px) {
-  .logo { max-height: 100px; }
-  header { padding: 1rem; }
-}
-</style>
+  </style>
 </head>
 <body>
 
-<!-- 🔔 Anuncio animado -->
+<!-- Barra de anuncio -->
 <div id="announcement-bar">
-  <p id="announcement-message">Cargando anuncios...</p>
+  <p id="announcement-message">✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨</p>
 </div>
 
 <header>
@@ -162,70 +327,125 @@ footer {
   <p>Resalta tu belleza con estilo</p>
 </header>
 
+<!-- Navegación -->
 <nav>
-  <a href="#inicio">Inicio</a>
-  <a href="#productos">Productos</a>
-  <a href="#consejos">Consejos</a>
-  <a href="#tips">Tips</a>
-  <a href="#blog">Blog</a>
-  <a href="#contacto">Contacto</a>
+  <a href="javascript:void(0);" id="show-home-button">Inicio</a>
+  <a href="javascript:void(0);" id="show-products-button">Productos</a>
+  <a href="javascript:void(0);" id="show-tips-button">Tips</a>
+  <a href="javascript:void(0);" id="show-blog-button">Blog</a>
+  <a href="javascript:void(0);" id="show-contacto-button">Contacto</a>
 </nav>
 
-<section class="fade-in">
+<!-- Sección de bienvenida -->
+<section id="welcome-section" class="fade-in">
   <h2>Bienvenida a tu espacio de belleza ✨</h2>
   <p>Explora productos, tips y todo lo que necesitas para brillar cada día.</p>
 </section>
 
-<section class="fade-in">
+<!-- Sección de favoritos -->
+<section class="favorites-section fade-in">
   <h2>Descubre nuestros favoritos</h2>
   <p>Creamos experiencias únicas con cada tono, textura y aroma.</p>
 </section>
 
+<!-- Modal de opciones de productos -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Selecciona un producto</h2>
+    <div class="product-options">
+      <div class="product-option" id="labial-option">
+        <div class="product-icon">💄</div>
+        <h3>Labial</h3>
+        <p>Labiales en varios tonos</p>
+      </div>
+      <div class="product-option" id="base-option">
+        <div class="product-icon">🧴</div>
+        <h3>Base</h3>
+        <p>Bases para un acabado perfecto</p>
+      </div>
+      <div class="product-option" id="pintauñas-option">
+        <div class="product-icon">💅</div>
+        <h3>Pinta Uñas</h3>
+        <p>Colores vibrantes para tus uñas</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
 <footer>
-  &copy; 2025 Maquillaje bella | Síguenos en Instagram @maquillajebella
+  <p>&copy; 2025 Maquillaje Bella | Síguenos en Instagram <a href="https://www.instagram.com/maquillajebella" target="_blank">@maquillajebella</a></p>
 </footer>
 
-<!-- 🎯 Script para scroll animado y anuncios -->
+<!-- Scripts -->
 <script>
-// Animación al hacer scroll
-document.addEventListener("DOMContentLoaded", function() {
-  const elements = document.querySelectorAll(".fade-in");
-  function onScroll() {
-    elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        el.classList.add("visible");
+  // Anuncios rotativos
+  const messages = [
+    "✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨",
+    "📦 RECOGE EN SUCURSAL DESDE $299 📦",
+    "💄 NUEVAS COLECCIONES DISPONIBLES AHORA 💄",
+    "🎁 DESCUENTOS EXCLUSIVOS SOLO ESTA SEMANA 🎁"
+    "✨ 2X1 EN TODO LOS LABIALES HOY✨",
+  ];
+
+  let currentMessageIndex = 0;
+
+  // Función para cambiar el mensaje del anuncio
+  function rotateAnnouncement() {
+    const announcementElement = document.getElementById("announcement-message");
+    announcementElement.textContent = messages[currentMessageIndex];
+    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+  }
+
+  // Cambiar el mensaje cada 5 segundos
+  setInterval(rotateAnnouncement, 2000);
+  rotateAnnouncement();
+
+  // Modal de productos
+  var modal = document.getElementById("productModal");
+  var btn = document.getElementById("show-products-button");
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Función para mostrar la categoría al hacer clic
+  document.getElementById("labial-option").onclick = function() {
+    alert("Has seleccionado Labial");
+  };
+
+  document.getElementById("base-option").onclick = function() {
+    alert("Has seleccionado Base");
+  };
+
+  document.getElementById("pintauñas-option").onclick = function() {
+    alert("Has seleccionado Pinta Uñas");
+  };
+
+  // Observador de intersección para animar secciones al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
       }
     });
-  }
-  window.addEventListener("scroll", onScroll);
-  onScroll();
-});
+  }, { threshold: 0.5 });
 
-// Anuncios rotativos
-const messages = [
-  "✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨",
-  "📦 RECOGE EN SUCURSAL DESDE $299 📦",
-  "💄 NUEVAS COLECCIONES DISPONIBLES AHORA 💄",
-  "🎁 DESCUENTOS EXCLUSIVOS SOLO ESTA SEMANA 🎁"
-];
-let index = 0;
-const messageEl = document.getElementById("announcement-message");
-
-function showMessage() {
-  messageEl.style.opacity = 0;
-  setTimeout(() => {
-    messageEl.textContent = messages[index];
-    messageEl.style.animation = "none";
-    void messageEl.offsetWidth; // Reinicia animación
-    messageEl.style.animation = null;
-    index = (index + 1) % messages.length;
-    messageEl.style.opacity = 1;
-  }, 300);
-}
-
-showMessage();
-setInterval(showMessage, 4000); // cambia cada 4 segundos
+  const sections = document.querySelectorAll('#welcome-section, .favorites-section');
+  sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
