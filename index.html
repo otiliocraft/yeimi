@@ -1,451 +1,414 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maquillaje Bella</title>
-  <style>
-    /* Variables de colores */
-    :root {
-      --oro: #d4af37;
-      --gris-oscuro: #333333;
-      --gris-claro: #f3f3f3;
-      --blanco: #fff;
-      --negro: #222;
-      --azul-acero: #4b6e88;
-      --rojo-intenso: #e02020;
-      --verde-fresco: #28a745;
-      --gris-medio: #cccccc;
-      --rosado-suave: #f9c1c1;
-    }
-
-    /* Estilos generales del body */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--gris-claro);
-      color: var(--negro);
-      padding-bottom: 80px; /* Espacio para el footer */
-    }
-
-    /* Estilo del anuncio fijo en la parte superior */
-    #announcement-bar {
-      background-color: var(--azul-acero);
-      color: var(--blanco);
-      text-align: center;
-      padding: 12px 0;
-      font-size: 16px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 9999;
-      height: 40px;
-      animation: fadeIn 1s ease-in-out forwards;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-50px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Animación de fade-in para bienvenida y favoritos */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Encabezado */
-    header {
-      background-color: var(--gris-oscuro);
-      color: var(--blanco);
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header .logo {
-      width: 150px;  /* Controla el tamaño del logo */
-      height: auto;
-      margin-bottom: 150px;
-      display: block;
-      margin: 0 auto 10px auto;
-      border-radius: 300%;
-      animation: bounce 2s ease infinite; /* Animación de rebote */
-    }
-
-    @keyframes bounce {
-      0% {
-        transform: translateY(0);
-      }
-      25% {
-        transform: translateY(-15px); /* Subir */
-      }
-      50% {
-        transform: translateY(0); /* Volver a la posición inicial */
-      }
-      75% {
-        transform: translateY(-7px); /* Subir un poco menos */
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    header h1, header p {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    header h1 { animation-delay: 0.5s; }
-    header p { animation-delay: 0.8s; }
-
-    /* Animación de texto de navegación */
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: var(--gris-claro);
-      padding: 1rem;
-      flex-wrap: wrap;
-      gap: 15px;
-      animation: slideDown 0.5s ease-out forwards;
-    }
-
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-50px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    nav a {
-      color: var(--gris-oscuro);
-      text-decoration: none;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: background 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      background-color: var(--oro);
-      width: 100%;
-      height: 3px;
-      bottom: 0;
-      left: 0;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: bottom right;
-    }
-
-    nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-
-    nav a:hover {
-      color: var(--blanco);
-      background-color: var(--azul-acero);
-      transform: translateY(-5px);
-    }
-
-    /* Estilos para el footer */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: var(--gris-oscuro);
-      color: var(--blanco);
-      text-align: center;
-      padding: 20px;
-      font-size: 16px;
-      box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      border-top: 3px solid var(--oro);
-    }
-
-    footer a {
-      color: var(--oro);
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: var(--blanco);
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    footer p span {
-      color: var(--oro);
-    }
-
-    /* Sección de bienvenida con animación */
-    #welcome-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1s ease;
-      text-align: center;
-      padding: 3rem 1.5rem;
-    }
-
-    /* Sección de favoritos con animación */
-    .favorites-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1s ease;
-      text-align: center;
-      padding: 3rem 1.5rem;
-    }
-
-    .product-card {
-      background-color: var(--blanco);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .product-card img {
-      width: 100px;
-      height: auto;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-    }
-
-    .product-options {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.product-option {
-  background-color: var(--rosado-suave);
-  padding: 20px;
-  border-radius: 10px;
-  width: 150px;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, background-color 0.3s, color 0.3s;
-}
-
-.product-option:hover {
-  background-color: var(--oro);
-  color: var(--blanco);
-  transform: scale(1.05);
-}
-
-.product-option .product-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
-
-.product-option h3 {
-  margin: 10px 0 5px;
-  font-size: 18px;
-}
-
-.product-option p {
-  font-size: 14px;
-  color: var(--gris-oscuro);
-}
-
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: var(--blanco);
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
-    }
-    .modal-content h2 {
-  text-align: center;
-  color: var(--oro);
-  margin-bottom: 20px;
-}
-
-
-    .close {
-      color: var(--gris-oscuro);
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: var(--rojo-intenso);
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella - Maquillaje de Lujo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-sans {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #d4a373;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .category-icon {
+            transition: all 0.3s ease;
+        }
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+        .gold-text {
+            color: #d4a373;
+        }
+        .gold-bg {
+            background-color: #d4a373;
+        }
+        .gold-border {
+            border-color: #d4a373;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans bg-white text-gray-700">
+    <!-- Header -->
+    <header class="bg-white fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <i class="fas fa-paint-brush text-2xl gold-text mr-2"></i>
+                    <h1 class="text-2xl font-serif font-medium tracking-wider">BELLA</h1>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium text-sm uppercase tracking-widest">Inicio</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium text-sm uppercase tracking-widest">Colección</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium text-sm uppercase tracking-widest">Inspiración</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium text-sm uppercase tracking-widest">Nosotros</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium text-sm uppercase tracking-widest">Contacto</a>
+                </nav>
+                
+                <!-- Icons -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-gray-700 hover:gold-text transition duration-300">
+                        <i class="fas fa-search text-sm"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:gold-text transition duration-300">
+                        <i class="fas fa-user text-sm"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:gold-text transition duration-300 relative">
+                        <i class="fas fa-shopping-bag text-sm"></i>
+                    </a>
+                    <button class="md:hidden text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<!-- Barra de anuncio -->
-<div id="announcement-bar">
-  <p id="announcement-message">✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨</p>
-</div>
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-center text-white">
+        <div class="px-6 max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-serif font-medium mb-8 tracking-wider">La Elegancia Hecha Maquillaje</h2>
+            <p class="text-lg md:text-xl mb-10 font-light max-w-2xl mx-auto leading-relaxed">Descubre nuestra colección de productos de lujo, formulados con los más altos estándares de calidad y diseñados para realzar tu belleza natural.</p>
+            <button class="bg-transparent border border-white hover:bg-white hover:text-gray-900 text-white font-medium py-3 px-10 rounded-none transition duration-300 tracking-widest text-sm uppercase">
+                Explorar
+            </button>
+        </div>
+    </section>
 
-<header>
-  <img src="logo1.jpg" alt="Logo Bella" class="logo">
-  <h1>Maquillaje Bella 💄</h1>
-  <p>Resalta tu belleza con estilo</p>
-</header>
+    <!-- Featured Categories -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-medium text-gray-900 mb-4">Nuestras Líneas</h2>
+                <div class="w-20 h-px bg-gray-300 mx-auto mb-4"></div>
+                <p class="text-gray-500 max-w-lg mx-auto">Selecciona entre nuestras exclusivas categorías de productos</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card bg-white p-8 text-center border border-gray-100 hover:border-gray-200 transition duration-300 cursor-pointer">
+                    <div class="category-icon gold-text mb-6">
+                        <i class="fas fa-eye text-3xl"></i>
+                    </div>
+                    <h3 class="font-serif text-lg text-gray-900 mb-2">Ojos</h3>
+                    <p class="text-sm text-gray-500">Sombras y delineadores</p>
+                </div>
+                <div class="category-card bg-white p-8 text-center border border-gray-100 hover:border-gray-200 transition duration-300 cursor-pointer">
+                    <div class="category-icon gold-text mb-6">
+                        <i class="fas fa-lips text-3xl"></i>
+                    </div>
+                    <h3 class="font-serif text-lg text-gray-900 mb-2">Labios</h3>
+                    <p class="text-sm text-gray-500">Labiales de lujo</p>
+                </div>
+                <div class="category-card bg-white p-8 text-center border border-gray-100 hover:border-gray-200 transition duration-300 cursor-pointer">
+                    <div class="category-icon gold-text mb-6">
+                        <i class="fas fa-blush text-3xl"></i>
+                    </div>
+                    <h3 class="font-serif text-lg text-gray-900 mb-2">Rostro</h3>
+                    <p class="text-sm text-gray-500">Bases y correctores</p>
+                </div>
+                <div class="category-card bg-white p-8 text-center border border-gray-100 hover:border-gray-200 transition duration-300 cursor-pointer">
+                    <div class="category-icon gold-text mb-6">
+                        <i class="fas fa-spa text-3xl"></i>
+                    </div>
+                    <h3 class="font-serif text-lg text-gray-900 mb-2">Cuidado</h3>
+                    <p class="text-sm text-gray-500">Preparación y limpieza</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Navegación -->
-<nav>
-  <a href="javascript:void(0);" id="show-home-button">Inicio</a>
-  <a href="javascript:void(0);" id="show-products-button">Productos</a>
-  <a href="javascript:void(0);" id="show-tips-button">Tips</a>
-  <a href="javascript:void(0);" id="show-blog-button">Blog</a>
-  <a href="javascript:void(0);" id="show-contacto-button">Contacto</a>
-</nav>
+    <!-- Featured Products -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-medium text-gray-900 mb-4">Colección Signature</h2>
+                <div class="w-20 h-px bg-gray-300 mx-auto mb-4"></div>
+                <p class="text-gray-500 max-w-lg mx-auto">Nuestros productos más icónicos</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paleta de sombras" class="w-full h-80 object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs px-3 py-1 uppercase tracking-widest">Nuevo</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl text-gray-900 mb-1">Paleta Nocturna</h3>
+                        <p class="text-sm text-gray-500 mb-4">12 sombras mate y brillo</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                            <span class="font-medium gold-text">$59.00</span>
+                            <button class="text-xs uppercase tracking-widest gold-text hover:text-gray-900 transition duration-300">
+                                Añadir <i class="fas fa-plus ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Labial líquido" class="w-full h-80 object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 right-4 bg-white text-gray-900 text-xs px-3 py-1 uppercase tracking-widest">Bestseller</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl text-gray-900 mb-1">Labial Seducción</h3>
+                        <p class="text-sm text-gray-500 mb-4">Larga duración - 8 colores</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                            <span class="font-medium gold-text">$39.00</span>
+                            <button class="text-xs uppercase tracking-widest gold-text hover:text-gray-900 transition duration-300">
+                                Añadir <i class="fas fa-plus ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1288&q=80" alt="Base de maquillaje" class="w-full h-80 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl text-gray-900 mb-1">Base Perfecta</h3>
+                        <p class="text-sm text-gray-500 mb-4">Cobertura natural - 12 tonos</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                            <span class="font-medium gold-text">$49.00</span>
+                            <button class="text-xs uppercase tracking-widest gold-text hover:text-gray-900 transition duration-300">
+                                Añadir <i class="fas fa-plus ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-block border-b border-gray-900 text-gray-900 hover:gold-text hover:gold-border pb-1 transition duration-300 uppercase text-sm tracking-widest">
+                    Ver toda la colección
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- Sección de bienvenida -->
-<section id="welcome-section" class="fade-in">
-  <h2>Bienvenida a tu espacio de belleza ✨</h2>
-  <p>Explora productos, tips y todo lo que necesitas para brillar cada día.</p>
-</section>
+    <!-- Beauty Philosophy -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Filosofía Bella" class="w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="font-serif text-3xl text-gray-900 mb-6">Nuestra Filosofía</h2>
+                    <div class="w-20 h-px bg-gray-300 mb-6"></div>
+                    <p class="text-gray-500 mb-6 leading-relaxed">
+                        En Bella creemos que el maquillaje es una forma de arte y autoexpresión. Cada producto está diseñado para realzar la belleza natural, no para ocultarla. Nuestras fórmulas limpias y de lujo están creadas con los más altos estándares de calidad.
+                    </p>
+                    <p class="text-gray-500 mb-8 leading-relaxed">
+                        Trabajamos con expertos en belleza para desarrollar productos que no solo sean hermosos, sino también buenos para tu piel. Cada tono, cada textura, está cuidadosamente seleccionado para ofrecer resultados impecables.
+                    </p>
+                    <a href="#" class="inline-block border-b border-gray-900 text-gray-900 hover:gold-text hover:gold-border pb-1 transition duration-300 uppercase text-sm tracking-widest">
+                        Conoce más
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Sección de favoritos -->
-<section class="favorites-section fade-in">
-  <h2>Descubre nuestros favoritos</h2>
-  <p>Creamos experiencias únicas con cada tono, textura y aroma.</p>
-</section>
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl text-gray-900 mb-4">Lo que dicen nuestras clientas</h2>
+                <div class="w-20 h-px bg-gray-300 mx-auto mb-4"></div>
+                <p class="text-gray-500 max-w-lg mx-auto">Experiencias reales con nuestros productos</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8">
+                    <div class="gold-text mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-500 italic mb-6">"La paleta de sombras es simplemente perfecta. Los pigmentos son increíbles y duran todo el día sin mancharse."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900">Ana Martínez</h4>
+                            <p class="text-xs text-gray-500">Maquilladora profesional</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8">
+                    <div class="gold-text mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-500 italic mb-6">"Nunca había usado un labial tan cómodo y pigmentado. No se seca mis labios y el color es exacto a lo que se ve en el empaque."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900">Laura González</h4>
+                            <p class="text-xs text-gray-500">Editora de moda</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8">
+                    <div class="gold-text mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-500 italic mb-6">"La base Perfecta vive up to su nombre. Da una cobertura impecable sin sentirse pesada. Mi piel se ve natural pero perfecta."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900">Sofía Ramírez</h4>
+                            <p class="text-xs text-gray-500">Influencer de belleza</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Modal de opciones de productos -->
-<div id="productModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Selecciona un producto</h2>
-    <div class="product-options">
-      <div class="product-option" id="labial-option">
-        <div class="product-icon">💄</div>
-        <h3>Labial</h3>
-        <p>Labiales en varios tonos</p>
-      </div>
-      <div class="product-option" id="base-option">
-        <div class="product-icon">🧴</div>
-        <h3>Base</h3>
-        <p>Bases para un acabado perfecto</p>
-      </div>
-      <div class="product-option" id="pintauñas-option">
-        <div class="product-icon">💅</div>
-        <h3>Pinta Uñas</h3>
-        <p>Colores vibrantes para tus uñas</p>
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- Newsletter -->
+    <section class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-serif text-3xl mb-6">Únete a la Comunidad Bella</h2>
+            <div class="w-20 h-px bg-gray-500 mx-auto mb-6"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10">Suscríbete para recibir exclusivos lanzamientos, consejos de belleza y un 15% de descuento en tu primera compra.</p>
+            <div class="max-w-md mx-auto flex flex-col sm:flex-row">
+                <input type="email" placeholder="Tu correo electrónico" class="flex-grow px-6 py-4 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-500 mb-4 sm:mb-0 sm:rounded-l sm:rounded-r-none">
+                <button class="gold-bg hover:bg-gray-700 text-white px-8 py-4 uppercase text-sm tracking-widest sm:rounded-r sm:rounded-l-none transition duration-300">
+                    Suscribirse
+                </button>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 Maquillaje Bella | Síguenos en Instagram <a href="https://www.instagram.com/maquillajebella" target="_blank">@maquillajebella</a></p>
-</footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-paint-brush text-xl gold-text mr-3"></i>
+                        <h3 class="font-serif text-xl text-white">BELLA</h3>
+                    </div>
+                    <p class="text-sm mb-6 leading-relaxed">Maquillaje de lujo diseñado para realzar tu belleza natural con fórmulas limpias y de alta calidad.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition duration-300">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition duration-300">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm uppercase tracking-widest text-white mb-6">Compañía</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Nuestra historia</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Sostenibilidad</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Trabaja con nosotros</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Prensa</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm uppercase tracking-widest text-white mb-6">Ayuda</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">FAQ</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Envíos y devoluciones</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Guía de tonos</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm uppercase tracking-widest text-white mb-6">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Política de privacidad</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition duration-300">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm mb-4 md:mb-0">© 2023 Bella Cosmetics. Todos los derechos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-sm hover:text-white transition duration-300">Términos de uso</a>
+                    <a href="#" class="text-sm hover:text-white transition duration-300">Política de privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- Scripts -->
-<script>
-  // Anuncios rotativos
-  const messages = [
-    "✨ ENVÍO GRATIS EN COMPRAS A PARTIR DE $599 ✨",
-    "📦 RECOGE EN SUCURSAL DESDE $299 📦",
-    "💄 NUEVAS COLECCIONES DISPONIBLES AHORA 💄",
-    "🎁 DESCUENTOS EXCLUSIVOS SOLO ESTA SEMANA 🎁"
-  ];
-
-  let currentMessageIndex = 0;
-
-  // Función para cambiar el mensaje del anuncio
-  function rotateAnnouncement() {
-    const announcementElement = document.getElementById("announcement-message");
-    announcementElement.textContent = messages[currentMessageIndex];
-    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-  }
-
-  // Cambiar el mensaje cada 5 segundos
-  setInterval(rotateAnnouncement, 2000);
-  rotateAnnouncement();
-
-  // Modal de productos
-  var modal = document.getElementById("productModal");
-  var btn = document.getElementById("show-products-button");
-  var span = document.getElementsByClassName("close")[0];
-
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
-  // Función para mostrar la categoría al hacer clic
-  document.getElementById("labial-option").onclick = function() {
-    alert("Has seleccionado Labial");
-  };
-
-  document.getElementById("base-option").onclick = function() {
-    alert("Has seleccionado Base");
-  };
-
-  document.getElementById("pintauñas-option").onclick = function() {
-    alert("Has seleccionado Pinta Uñas");
-  };
-
-  // Observador de intersección para animar secciones al hacer scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.5 });
-
-  const sections = document.querySelectorAll('#welcome-section, .favorites-section');
-  sections.forEach(section => observer.observe(section));
-</script>
-
+    <script>
+        // Simple script for mobile menu toggle (would need additional HTML)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.md\\:hidden');
+            mobileMenuBtn.addEventListener('click', function() {
+                // This would toggle a mobile menu (not fully implemented in this elegant version)
+                console.log('Mobile menu would open');
+            });
+        });
+    </script>
 </body>
 </html>
