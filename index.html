@@ -1,168 +1,419 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bella - Tienda de Maquillaje</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maquillaje Bella</title>
+  <script src="https://cdn.tailwindcss.com"></script> 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fef6f9;
-      color: #333;
-    }
-    header {
-      background-color: #ffebf0;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .navbar {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .navbar-nav {
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
-    .product {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 1rem;
-      margin: 1rem 0;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .product img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-    }
-    .cart {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      max-width: 300px;
-      z-index: 1000;
-    }
-    .btn-buy {
-      background-color: #e91e63;
-      color: white;
+    .hidden {
+      display: none;
     }
   </style>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Bella</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#consejos">Consejos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<body class="bg-white font-sans text-gray-800 antialiased">
 
-  <header>
-    <h1>Bella</h1>
-    <p>Maquillaje elegante y moderno para ti</p>
+  <!-- Header -->
+  <header class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-pink-700">Maquillaje <span class="text-gray-900">Bella</span></h1>
+    </div>
+
+    <!-- Barra de navegación -->
+    <nav class="bg-pink-50 shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-6 text-sm font-medium">
+        <button onclick="showSection('inicio')" class="transition text-gray-700 hover:text-pink-600">Inicio</button>
+        <button onclick="showSection('tienda')" class="transition text-gray-700 hover:text-pink-600">Tienda</button>
+        <button onclick="showSection('compras')" class="transition text-gray-700 hover:text-pink-600">Compras</button>
+        <button onclick="showSection('favoritos')" class="transition text-gray-700 hover:text-pink-600">Favoritos</button>
+        <button onclick="showSection('ofertas')" class="transition text-gray-700 hover:text-pink-600">Ofertas</button>
+        <button onclick="showSection('saldo')" class="transition text-gray-700 hover:text-pink-600">Saldo</button>
+      </div>
+    </nav>
   </header>
 
-  <div class="container mt-4" id="productos">
-    <div class="row" id="product-list">
-      <!-- Productos aquí -->
+  <!-- Contenido Dinámico -->
+  <main class="min-h-screen">
+    <!-- Inicio -->
+    <section id="inicio" class="relative bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 overflow-hidden min-h-[60vh] flex items-center hidden">
+      <div class="absolute inset-0 opacity-10">
+        <img src="https://placehold.co/1600x800/ffe4e6/ffffff?text=Bella+Makeup" alt="Fondo decorativo" class="w-full h-full object-cover" />
+      </div>
+      <div class="max-w-6xl mx-auto px-4 py-20 relative z-10 text-center md:text-left md:flex md:items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+            Realza tu belleza natural con <span class="text-pink-600">Bella</span>
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-lg">
+            Descubre la colección premium creada por Yeimi, diseñada para realzar tu rostro con ingredientes naturales y una fórmula duradera.
+          </p>
+          <div class="mt-6 space-x-4">
+            <button onclick="showSection('tienda')" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+              Ver Tienda
+            </button>
+            <button onclick="showSection('compras')" class="border border-pink-600 text-pink-600 hover:bg-pink-50 font-semibold py-3 px-6 rounded-lg shadow-md transition">
+              Ir al Carrito
+            </button>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="https://placehold.co/500x600/fbcfe8/ffffff?text=Y+Makeup" alt="Producto Bella" class="rounded-xl shadow-2xl w-64 md:w-80 hover:rotate-1 hover:shadow-3xl transition duration-500"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tienda -->
+    <section id="tienda" class="py-20 bg-white hidden">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nuestra Colección</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-list">
+          <!-- Los productos se generan dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Compras (Carrito) -->
+    <section id="compras" class="py-20 bg-gray-50 hidden">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Tu Carrito de Compras</h2>
+        <div id="cart-content" class="bg-white p-6 rounded-xl shadow-md space-y-4">
+          <p class="text-center text-gray-500">Tu carrito está vacío</p>
+        </div>
+        <div id="cart-summary" class="mt-6 flex flex-col sm:flex-row justify-between items-center hidden">
+          <button onclick="clearCart()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg w-full sm:w-auto mb-3 sm:mb-0">
+            Eliminar Todo
+          </button>
+          <button onclick="handleBuy()" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg w-full sm:w-auto flex justify-center items-center space-x-2">
+            <span>Comprar</span>
+            <span id="total-display" class="bg-white text-pink-600 font-bold px-3 py-1 rounded-full text-sm"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Favoritos -->
+    <section id="favoritos" class="py-20 bg-white hidden">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-10">Tus Productos Favoritos</h2>
+        <div id="favorites-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10"></div>
+      </div>
+    </section>
+
+    <!-- Ofertas -->
+    <section id="ofertas" class="py-20 bg-gray-50 hidden">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Ofertas Especiales</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
+            <img src="https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Special" alt="BB Cream Oferta" class="w-full h-48 object-cover rounded mb-4" />
+            <h3 class="text-lg font-semibold text-gray-800">BB Cream Bella - Oferta</h3>
+            <p class="text-gray-600 line-through text-sm">Normal: $29.99</p>
+            <p class="text-pink-600 font-bold text-lg">$22.99</p>
+            <button onclick="addToCart({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
+              Agregar al Carrito
+            </button>
+          </div>
+          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
+            <img src="https://placehold.co/400x400/fc466b/ffffff?text=Lipstick+Sale" alt="Labial Mate Oferta" class="w-full h-48 object-cover rounded mb-4" />
+            <h3 class="text-lg font-semibold text-gray-800">Labial Mate Bella - Oferta</h3>
+            <p class="text-gray-600 line-through text-sm">Normal: $19.99</p>
+            <p class="text-pink-600 font-bold text-lg">$14.99</p>
+            <button onclick="addToCart({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
+              Agregar al Carrito
+            </button>
+          </div>
+          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
+            <img src="https://placehold.co/400x400/a3a3a3/ffffff?text=Eyes+Deals" alt="Paleta Oferta" class="w-full h-48 object-cover rounded mb-4" />
+            <h3 class="text-lg font-semibold text-gray-800">Paleta de Sombras - Oferta</h3>
+            <p class="text-gray-600 line-through text-sm">Normal: $39.99</p>
+            <p class="text-pink-600 font-bold text-lg">$29.99</p>
+            <button onclick="addToCart({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Saldo -->
+    <section id="saldo" class="py-20 bg-white hidden">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Tu Saldo Disponible</h2>
+        <div class="bg-pink-50 p-10 rounded-xl shadow-md inline-block">
+          <p class="text-xl text-gray-600 mb-2">Saldo disponible:</p>
+          <p id="balance-display" class="text-3xl font-bold text-pink-600">$500.00</p>
+          <div class="mt-6 space-x-4">
+            <button onclick="addBalance(50)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $50</button>
+            <button onclick="addBalance(100)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $100</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-pink-50 py-8 text-center text-gray-600">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm">&copy; 2025 Bella Makeup - Diseñado por Yeimi</p>
+      <div class="mt-4 flex justify-center space-x-4">
+        <a href="#" class="text-pink-600 hover:text-pink-800 transition">Instagram</a> 
+        <a href="#" class="text-pink-600 hover:text-pink-800 transition">Facebook</a>
+        <a href="#" class="text-pink-600 hover:text-pink-800 transition">TikTok</a>
+      </div>
     </div>
-  </div>
+  </footer>
 
-  <div class="cart" id="cart">
-    <h5>Carrito</h5>
-    <ul id="cart-items" class="list-unstyled"></ul>
-    <p>Total: $<span id="cart-total">0.00</span></p>
-    <button class="btn btn-buy w-100" onclick="simulatePurchase()">Comprar</button>
-    <div id="purchase-message" class="mt-2 text-success fw-bold" style="display:none;">¡Gracias por tu compra!</div>
-  </div>
-
-  <div class="container mt-5" id="consejos">
-    <h2>Consejos de Belleza</h2>
-    <p>Recuerda siempre limpiar tu piel antes de maquillarte para lograr un acabado perfecto y duradero. Hidrátate bien y utiliza productos acordes a tu tipo de piel.</p>
-  </div>
-
-  <div class="container mt-5 mb-5" id="contacto">
-    <h2>Contacto</h2>
-    <p>Puedes contactarnos a través de nuestras redes sociales o enviarnos un correo a <strong>contacto@bella.com</strong>.</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts -->
   <script>
+    const sections = ['inicio', 'tienda', 'compras', 'favoritos', 'ofertas', 'saldo'];
+    let cart = [];
+    let balance = parseFloat(localStorage.getItem("saldo")) || 500.00;
+    let favorites = JSON.parse(localStorage.getItem("favoritos")) || [];
+
     const products = [
-      { id: 1, name: 'Labial Rosa', price: 12.99, img: 'https://via.placeholder.com/300x200?text=Labial+Rosa' },
-      { id: 2, name: 'Base Líquida', price: 24.99, img: 'https://via.placeholder.com/300x200?text=Base+Líquida' },
-      { id: 3, name: 'Delineador Negro', price: 9.99, img: 'https://via.placeholder.com/300x200?text=Delineador+Negro' }
+      { id: 1, name: "BB Cream Bella", price: 29.99, image: "https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream" },
+      { id: 2, name: "Labial Mate Bella", price: 19.99, image: "https://placehold.co/400x400/fc466b/ffffff?text=Lipstick" },
+      { id: 3, name: "Paleta de Sombras Bella", price: 39.99, image: "https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow" }
     ];
 
-    const cart = [];
+    function showSection(sectionId) {
+      document.querySelectorAll("main > section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(sectionId).classList.remove("hidden");
+    }
 
-    function renderProducts() {
-      const list = document.getElementById('product-list');
-      products.forEach(product => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4';
-        col.innerHTML = `
-          <div class="product">
-            <img src="${product.img}" alt="${product.name}">
-            <h5>${product.name}</h5>
-            <p>Precio: $${product.price.toFixed(2)}</p>
-            <button class="btn btn-buy" onclick="addToCart(${product.id})">Agregar al carrito</button>
+    // Cargar productos en tienda
+    window.onload = () => {
+      showSection("inicio");
+
+      const productList = document.getElementById("product-list");
+      productList.innerHTML = "";
+      products.forEach(p => {
+        productList.innerHTML += `
+          <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
+              <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
+              <div class="mt-3 flex justify-between items-center">
+                <input type="number" placeholder="1" min="1" id="qty-${p.id}" class="w-16 border border-gray-300 rounded px-2 py-1 text-center" />
+                <div class="flex items-center space-x-2">
+                  <button onclick="addToCart({...{id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+                  <button onclick="toggleFavorite({id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="px-2 py-2 rounded text-gray-400 hover:text-red-600">${isInFavorites(products[0]) ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>'}</button>
+                </div>
+              </div>
+            </div>
           </div>
         `;
-        list.appendChild(col);
       });
+      updateBalanceDisplay();
+      loadFavorites();
     }
 
-    function addToCart(productId) {
-      const product = products.find(p => p.id === productId);
-      cart.push(product);
-      renderCart();
+    function isInFavorites(product) {
+      return favorites.some(fav => fav.id === product.id);
     }
 
-    function renderCart() {
-      const cartList = document.getElementById('cart-items');
-      const total = document.getElementById('cart-total');
-      const message = document.getElementById('purchase-message');
-      cartList.innerHTML = '';
-      message.style.display = 'none';
-      let sum = 0;
-      cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-        cartList.appendChild(li);
-        sum += item.price;
-      });
-      total.textContent = sum.toFixed(2);
+    function toggleFavorite(product) {
+      if (!isInFavorites(product)) {
+        favorites.push(product);
+        alert(`${product.name} añadido a favoritos`);
+      } else {
+        favorites = favorites.filter(fav => fav.id !== product.id);
+        alert(`${product.name} eliminado de favoritos`);
+      }
+      localStorage.setItem("favoritos", JSON.stringify(favorites));
+      loadFavorites();
     }
 
-    function simulatePurchase() {
-      if (cart.length === 0) {
-        alert('El carrito está vacío. Agrega productos antes de comprar.');
+    function loadFavorites() {
+      const favContainer = document.getElementById("favorites-content");
+      if (!favContainer) return;
+      favContainer.innerHTML = "";
+      if (favorites.length === 0) {
+        favContainer.innerHTML = `
+          <div class="col-span-3 bg-pink-50 p-10 rounded-xl shadow-md mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 inline-block text-pink-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <p class="text-gray-600">Aquí aparecerán tus productos favoritos.</p>
+            <p class="text-sm text-gray-400 mt-2">¡Empieza a marcar productos como favoritos desde la tienda!</p>
+          </div>`;
+      } else {
+        favorites.forEach(p => {
+          favContainer.innerHTML += `
+            <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
+              <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
+              <div class="p-4">
+                <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
+                <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
+                <button onclick="toggleFavorite(${JSON.stringify(p)})" class="mt-2 text-red-500 hover:text-red-700">Eliminar de Favoritos</button>
+              </div>
+            </div>`;
+        });
+      }
+    }
+
+    function addToCart(product) {
+      const qtyInput = document.getElementById(`qty-${product.id}`);
+      const quantity = parseInt(qtyInput?.value || 1);
+
+      if (!quantity || quantity <= 0) {
+        alert("Por favor ingresa una cantidad válida.");
         return;
       }
-      cart.length = 0;
-      renderCart();
-      document.getElementById('purchase-message').style.display = 'block';
+
+      const existingItem = cart.find(item => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({...product, quantity});
+      }
+
+      alert(`${quantity} unidad(es) de ${product.name} agregadas al carrito`);
+      updateCartDisplay();
+      updateBalanceDisplay();
     }
 
-    renderProducts();
+    function updateCartDisplay() {
+      const cartContent = document.getElementById("cart-content");
+      const cartSummary = document.getElementById("cart-summary");
+      const totalDisplay = document.getElementById("total-display");
+      cartContent.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContent.innerHTML = `
+          <div class="text-center py-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 inline-block text-pink-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5M7 13L5 5m2 8a2 2 0 1 0-.284-3.993A2 2 0 007 13z"/>
+            </svg>
+            <p class="text-lg text-gray-500">Tu carrito está vacío</p>
+          </div>`;
+        cartSummary.classList.add("hidden");
+        return;
+      }
+
+      cart.forEach(item => {
+        cartContent.innerHTML += `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b last:border-b-0">
+            <div class="flex items-center">
+              <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover" />
+              <div class="ml-4">
+                <h4 class="font-semibold">${item.name}</h4>
+                <p class="text-xs text-gray-500">$${item.price.toFixed(2)} x ${item.quantity}</p>
+              </div>
+            </div>
+            <div class="mt-3 sm:mt-0 flex items-center space-x-2">
+              <button onclick="decreaseQuantity(${item.id})" class="text-gray-600 hover:text-pink-600">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="increaseQuantity(${item.id})" class="text-gray-600 hover:text-pink-600">+</button>
+              <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 ml-4">Eliminar</button>
+            </div>
+          </div>`;
+      });
+
+      cartSummary.classList.remove("hidden");
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+      totalDisplay.textContent = `${cart.reduce((sum, item) => sum + item.quantity, 0)} art. - $${total}`;
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartDisplay();
+    }
+
+    function decreaseQuantity(id) {
+      const item = cart.find(i => i.id === id);
+      if (item && item.quantity > 1) item.quantity--;
+      updateCartDisplay();
+    }
+
+    function increaseQuantity(id) {
+      const item = cart.find(i => i.id === id);
+      if (item) item.quantity++;
+      updateCartDisplay();
+    }
+
+    function clearCart() {
+      if (confirm("¿Estás seguro de eliminar todo el carrito?")) {
+        cart = [];
+        updateCartDisplay();
+      }
+    }
+
+    function calculateTotal() {
+      return cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    }
+
+    function handleBuy() {
+      const total = parseFloat(calculateTotal());
+      if (total === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      if (total > balance) {
+        alert("Saldo insuficiente para completar la compra.");
+        return;
+      }
+
+      balance -= total;
+      localStorage.setItem("saldo", balance.toFixed(2));
+
+      const purchase = {
+        date: new Date().toLocaleString(),
+        items: [...cart],
+        total: total
+      };
+
+      const history = JSON.parse(localStorage.getItem("historialCompras") || "[]");
+      history.unshift(purchase);
+      localStorage.setItem("historialCompras", JSON.stringify(history));
+      cart = [];
+      updateCartDisplay();
+      updateBalanceDisplay();
+      alert(`Compra realizada por $${total}. Nuevo saldo: $${balance.toFixed(2)}. ¡Gracias por tu compra!`);
+    }
+
+    function updateBalanceDisplay() {
+      const balanceDisplay = document.getElementById("balance-display");
+      if (balanceDisplay) balanceDisplay.textContent = `$${balance.toFixed(2)}`;
+    }
+
+    function addBalance(amount) {
+      balance += amount;
+      updateBalanceDisplay();
+      localStorage.setItem("saldo", balance.toFixed(2));
+    }
+
+    // Mostrar primera sección al cargar
+    window.onload = () => {
+      showSection("inicio");
+
+      const productList = document.getElementById("product-list");
+      productList.innerHTML = "";
+      products.forEach(p => {
+        productList.innerHTML += `
+          <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
+              <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
+              <div class="mt-3 flex justify-between items-center">
+                <input type="number" placeholder="1" min="1" id="qty-${p.id}" class="w-16 border border-gray-300 rounded px-2 py-1 text-center" />
+                <div class="flex items-center space-x-2">
+                  <button onclick="addToCart({...{id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+                  <button onclick="toggleFavorite({id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="px-2 py-2 rounded text-gray-400 hover:text-red-600">
+                    ${isInFavorites(p) ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      updateBalanceDisplay();
+      loadFavorites();
+      updateCartDisplay();
+    }
   </script>
 </body>
 </html>
