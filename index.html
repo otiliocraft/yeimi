@@ -17,9 +17,9 @@
       color: white;
       padding: 12px 24px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      animation: slideIn 0.3s ease forwards, fadeOut 2s ease-in 2s forwards;
+      box-shadow: 0 2 6 rgba(0,0,0,0.2);
       z-index: 50;
+      animation: slideIn 0.3s ease forwards, fadeOut 2s ease-in 2s forwards;
     }
     @keyframes slideIn {
       from { transform: translateX(100%); opacity: 0; }
@@ -133,8 +133,9 @@
             <p class="text-pink-600 font-bold text-lg">$22.99</p>
             <div class="mt-3 flex flex-col space-y-2">
               <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="addToCart({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="toggleFavorite({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
             </div>
           </div>
           <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
@@ -144,8 +145,9 @@
             <p class="text-pink-600 font-bold text-lg">$14.99</p>
             <div class="mt-3 flex flex-col space-y-2">
               <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="addToCart({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="toggleFavorite({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
             </div>
           </div>
           <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
@@ -155,8 +157,9 @@
             <p class="text-pink-600 font-bold text-lg">$29.99</p>
             <div class="mt-3 flex flex-col space-y-2">
               <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="addToCart({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+              <button onclick="toggleFavorite({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
             </div>
           </div>
         </div>
@@ -197,13 +200,6 @@
     let cart = [];
     let balance = parseFloat(localStorage.getItem("saldo")) || 500.00;
     let favorites = JSON.parse(localStorage.getItem("favoritos")) || [];
-    let purchaseHistory = JSON.parse(localStorage.getItem("historialCompras")) || [];
-
-    const products = [
-      { id: 1, name: "BB Cream Bella", price: 29.99, image: "https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream" },
-      { id: 2, name: "Labial Mate Bella", price: 19.99, image: "https://placehold.co/400x400/fc466b/ffffff?text=Lipstick" },
-      { id: 3, name: "Paleta de Sombras Bella", price: 39.99, image: "https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow" }
-    ];
 
     function showSection(sectionId) {
       document.querySelectorAll("main > section").forEach(sec => sec.classList.add("hidden"));
@@ -240,14 +236,16 @@
     }
 
     function toggleFavorite(product) {
-      if (!isInFavorites(product)) {
-        favorites.push(product);
+      const index = favorites.findIndex(fav => fav.id === product.id);
+      if (index > -1) {
+        favorites.splice(index, 1);
+        showToast(`${product.name} eliminado de favoritos`);
       } else {
-        favorites = favorites.filter(fav => fav.id !== product.id);
+        favorites.push(product);
+        showToast(`${product.name} añadido a favoritos`);
       }
       localStorage.setItem("favoritos", JSON.stringify(favorites));
       loadFavorites();
-      showToast(`${isInFavorites(product) ? 'Agregado a favoritos' : 'Eliminado de favoritos'}`);
     }
 
     function isInFavorites(product) {
@@ -283,7 +281,7 @@
     }
 
     function addToCart(product) {
-      const qtyInput = document.getElementById(`qty-${product.id}`) || { value: 1 };
+      const qtyInput = document.querySelector(`#qty-${product.id}`) || { value: 1 };
       const quantity = parseInt(qtyInput.value);
 
       if (!quantity || quantity <= 0) return;
@@ -292,7 +290,7 @@
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
-        cart.push({...product, quantity});
+        cart.push({ ...product, quantity });
       }
 
       updateCartDisplay();
@@ -300,7 +298,7 @@
     }
 
     function buyNow(product) {
-      const qtyInput = document.getElementById(`qty-${product.id}`) || { value: 1 };
+      const qtyInput = document.querySelector(`#qty-${product.id}`) || { value: 1 };
       const quantity = parseInt(qtyInput.value);
       const total = product.price * quantity;
 
@@ -310,19 +308,19 @@
       }
 
       balance -= total;
+      updateBalanceDisplay();
       localStorage.setItem("saldo", balance.toFixed(2));
 
       const purchase = {
         date: new Date().toLocaleString(),
         item: product,
-        quantity: quantity,
-        total: total
+        quantity,
+        total
       };
 
       const history = JSON.parse(localStorage.getItem("historialCompras") || "[]");
       history.unshift(purchase);
       localStorage.setItem("historialCompras", JSON.stringify(history));
-      updateBalanceDisplay();
       showToast(`Compra realizada por $${total.toFixed(2)}. Nuevo saldo: $${balance.toFixed(2)}`);
     }
 
@@ -336,7 +334,7 @@
         cartContent.innerHTML = `
           <div class="text-center py-10">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 inline-block text-pink-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5M7 13L5 5m2 8a2 2 0 1 0-.284-3.993A2 2 0 007 13z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5M7 13L5 5m2 8a2 2 0 10-.284-3.993A2 2 0 007 13z"/>
             </svg>
             <p class="text-lg text-gray-500">Tu carrito está vacío</p>
           </div>`;
@@ -376,18 +374,14 @@
 
     function decreaseQuantity(id) {
       const item = cart.find(i => i.id === id);
-      if (item && item.quantity > 1) {
-        item.quantity--;
-        updateCartDisplay();
-      }
+      if (item && item.quantity > 1) item.quantity--;
+      updateCartDisplay();
     }
 
     function increaseQuantity(id) {
       const item = cart.find(i => i.id === id);
-      if (item) {
-        item.quantity++;
-        updateCartDisplay();
-      }
+      if (item) item.quantity++;
+      updateCartDisplay();
     }
 
     function clearCart() {
@@ -399,9 +393,7 @@
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
       if (parseFloat(total) === 0) return showToast("Tu carrito está vacío");
 
-      if (parseFloat(total) > balance) {
-        return showToast("Saldo insuficiente");
-      }
+      if (parseFloat(total) > balance) return showToast("Saldo insuficiente");
 
       balance -= parseFloat(total);
       localStorage.setItem("saldo", balance.toFixed(2));
@@ -415,6 +407,11 @@
       const productList = document.getElementById("product-list");
       productList.innerHTML = "";
       products.forEach(p => {
+        const isFav = isInFavorites(p) ? 'text-red-500' : 'text-gray-400';
+        const heartSVG = isInFavorites(p)
+          ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5S4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3s3.58.58 4.7 1.86L12 21.35z"/></svg>`
+          : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`;
+
         productList.innerHTML += `
           <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
             <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
@@ -426,6 +423,7 @@
                 <div class="flex flex-col space-y-2">
                   <button onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
                   <button onclick="buyNow(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+                  <button onclick="toggleFavorite(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="px-2 py-2 rounded text-gray-400 hover:${isFav.includes('red') ? 'text-red-600' : 'text-gray-400'}">${heartSVG} Añadir a Favoritos</button>
                 </div>
               </div>
             </div>
@@ -440,6 +438,9 @@
       loadFavorites();
       updateCartDisplay();
     };
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
