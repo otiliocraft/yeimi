@@ -9,9 +9,31 @@
     .hidden {
       display: none;
     }
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ec4899;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      animation: slideIn 0.3s ease forwards, fadeOut 2s ease-in 2s forwards;
+      z-index: 50;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; transform: translateX(100%); }
+    }
   </style>
 </head>
 <body class="bg-white font-sans text-gray-800 antialiased">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="hidden absolute z-50"></div>
 
   <!-- Header -->
   <header class="bg-white border-b">
@@ -24,7 +46,7 @@
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-6 text-sm font-medium">
         <button onclick="showSection('inicio')" class="transition text-gray-700 hover:text-pink-600">Inicio</button>
         <button onclick="showSection('tienda')" class="transition text-gray-700 hover:text-pink-600">Tienda</button>
-        <button onclick="showSection('compras')" class="transition text-gray-700 hover:text-pink-600">Compras</button>
+        <button onclick="showSection('compras')" class="transition text-gray-700 hover:text-pink-600">Carrito</button>
         <button onclick="showSection('favoritos')" class="transition text-gray-700 hover:text-pink-600">Favoritos</button>
         <button onclick="showSection('ofertas')" class="transition text-gray-700 hover:text-pink-600">Ofertas</button>
         <button onclick="showSection('saldo')" class="transition text-gray-700 hover:text-pink-600">Saldo</button>
@@ -109,27 +131,33 @@
             <h3 class="text-lg font-semibold text-gray-800">BB Cream Bella - Oferta</h3>
             <p class="text-gray-600 line-through text-sm">Normal: $29.99</p>
             <p class="text-pink-600 font-bold text-lg">$22.99</p>
-            <button onclick="addToCart({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
-              Agregar al Carrito
-            </button>
+            <div class="mt-3 flex flex-col space-y-2">
+              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
+              <button onclick="addToCart({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+            </div>
           </div>
           <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
             <img src="https://placehold.co/400x400/fc466b/ffffff?text=Lipstick+Sale" alt="Labial Mate Oferta" class="w-full h-48 object-cover rounded mb-4" />
             <h3 class="text-lg font-semibold text-gray-800">Labial Mate Bella - Oferta</h3>
             <p class="text-gray-600 line-through text-sm">Normal: $19.99</p>
             <p class="text-pink-600 font-bold text-lg">$14.99</p>
-            <button onclick="addToCart({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
-              Agregar al Carrito
-            </button>
+            <div class="mt-3 flex flex-col space-y-2">
+              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
+              <button onclick="addToCart({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+            </div>
           </div>
           <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
             <img src="https://placehold.co/400x400/a3a3a3/ffffff?text=Eyes+Deals" alt="Paleta Oferta" class="w-full h-48 object-cover rounded mb-4" />
             <h3 class="text-lg font-semibold text-gray-800">Paleta de Sombras - Oferta</h3>
             <p class="text-gray-600 line-through text-sm">Normal: $39.99</p>
             <p class="text-pink-600 font-bold text-lg">$29.99</p>
-            <button onclick="addToCart({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="mt-3 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">
-              Agregar al Carrito
-            </button>
+            <div class="mt-3 flex flex-col space-y-2">
+              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
+              <button onclick="addToCart({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+              <button onclick="buyNow({id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +173,7 @@
           <div class="mt-6 space-x-4">
             <button onclick="addBalance(50)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $50</button>
             <button onclick="addBalance(100)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $100</button>
+            <button onclick="simulateCardReload()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4">Recargar desde Tarjeta</button>
           </div>
         </div>
       </div>
@@ -165,10 +194,10 @@
 
   <!-- Scripts -->
   <script>
-    const sections = ['inicio', 'tienda', 'compras', 'favoritos', 'ofertas', 'saldo'];
     let cart = [];
     let balance = parseFloat(localStorage.getItem("saldo")) || 500.00;
     let favorites = JSON.parse(localStorage.getItem("favoritos")) || [];
+    let purchaseHistory = JSON.parse(localStorage.getItem("historialCompras")) || [];
 
     const products = [
       { id: 1, name: "BB Cream Bella", price: 29.99, image: "https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream" },
@@ -181,48 +210,48 @@
       document.getElementById(sectionId).classList.remove("hidden");
     }
 
-    // Cargar productos en tienda
-    window.onload = () => {
-      showSection("inicio");
-
-      const productList = document.getElementById("product-list");
-      productList.innerHTML = "";
-      products.forEach(p => {
-        productList.innerHTML += `
-          <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-            <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
-              <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
-              <div class="mt-3 flex justify-between items-center">
-                <input type="number" placeholder="1" min="1" id="qty-${p.id}" class="w-16 border border-gray-300 rounded px-2 py-1 text-center" />
-                <div class="flex items-center space-x-2">
-                  <button onclick="addToCart({...{id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-                  <button onclick="toggleFavorite({id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="px-2 py-2 rounded text-gray-400 hover:text-red-600">${isInFavorites(products[0]) ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>'}</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-      updateBalanceDisplay();
-      loadFavorites();
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 2500);
     }
 
-    function isInFavorites(product) {
-      return favorites.some(fav => fav.id === product.id);
+    function updateBalanceDisplay() {
+      const balanceDisplay = document.getElementById("balance-display");
+      if (balanceDisplay) balanceDisplay.textContent = `$${balance.toFixed(2)}`;
+    }
+
+    function addBalance(amount) {
+      balance += amount;
+      updateBalanceDisplay();
+      localStorage.setItem("saldo", balance.toFixed(2));
+      showToast(`¡Se recargaron $${amount} exitosamente!`);
+    }
+
+    function simulateCardReload() {
+      const cardAmount = 200.00;
+      balance += cardAmount;
+      updateBalanceDisplay();
+      localStorage.setItem("saldo", balance.toFixed(2));
+      showToast(`¡Se recargaron $${cardAmount} desde tu tarjeta!`);
     }
 
     function toggleFavorite(product) {
       if (!isInFavorites(product)) {
         favorites.push(product);
-        alert(`${product.name} añadido a favoritos`);
       } else {
         favorites = favorites.filter(fav => fav.id !== product.id);
-        alert(`${product.name} eliminado de favoritos`);
       }
       localStorage.setItem("favoritos", JSON.stringify(favorites));
       loadFavorites();
+      showToast(`${isInFavorites(product) ? 'Agregado a favoritos' : 'Eliminado de favoritos'}`);
+    }
+
+    function isInFavorites(product) {
+      return favorites.some(fav => fav.id === product.id);
     }
 
     function loadFavorites() {
@@ -236,7 +265,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
             </svg>
             <p class="text-gray-600">Aquí aparecerán tus productos favoritos.</p>
-            <p class="text-sm text-gray-400 mt-2">¡Empieza a marcar productos como favoritos desde la tienda!</p>
+            <p class="text-sm text-gray-400 mt-2">Empieza a marcar productos como favoritos desde la tienda</p>
           </div>`;
       } else {
         favorites.forEach(p => {
@@ -254,13 +283,10 @@
     }
 
     function addToCart(product) {
-      const qtyInput = document.getElementById(`qty-${product.id}`);
-      const quantity = parseInt(qtyInput?.value || 1);
+      const qtyInput = document.getElementById(`qty-${product.id}`) || { value: 1 };
+      const quantity = parseInt(qtyInput.value);
 
-      if (!quantity || quantity <= 0) {
-        alert("Por favor ingresa una cantidad válida.");
-        return;
-      }
+      if (!quantity || quantity <= 0) return;
 
       const existingItem = cart.find(item => item.id === product.id);
       if (existingItem) {
@@ -269,9 +295,35 @@
         cart.push({...product, quantity});
       }
 
-      alert(`${quantity} unidad(es) de ${product.name} agregadas al carrito`);
       updateCartDisplay();
+      showToast(`¡${product.name} agregado(s) al carrito!`);
+    }
+
+    function buyNow(product) {
+      const qtyInput = document.getElementById(`qty-${product.id}`) || { value: 1 };
+      const quantity = parseInt(qtyInput.value);
+      const total = product.price * quantity;
+
+      if (total > balance) {
+        showToast("Saldo insuficiente.");
+        return;
+      }
+
+      balance -= total;
+      localStorage.setItem("saldo", balance.toFixed(2));
+
+      const purchase = {
+        date: new Date().toLocaleString(),
+        item: product,
+        quantity: quantity,
+        total: total
+      };
+
+      const history = JSON.parse(localStorage.getItem("historialCompras") || "[]");
+      history.unshift(purchase);
+      localStorage.setItem("historialCompras", JSON.stringify(history));
       updateBalanceDisplay();
+      showToast(`Compra realizada por $${total.toFixed(2)}. Nuevo saldo: $${balance.toFixed(2)}`);
     }
 
     function updateCartDisplay() {
@@ -313,7 +365,8 @@
 
       cartSummary.classList.remove("hidden");
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-      totalDisplay.textContent = `${cart.reduce((sum, item) => sum + item.quantity, 0)} art. - $${total}`;
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      totalDisplay.textContent = `${totalItems} art. - $${total}`;
     }
 
     function removeFromCart(id) {
@@ -323,71 +376,42 @@
 
     function decreaseQuantity(id) {
       const item = cart.find(i => i.id === id);
-      if (item && item.quantity > 1) item.quantity--;
-      updateCartDisplay();
-    }
-
-    function increaseQuantity(id) {
-      const item = cart.find(i => i.id === id);
-      if (item) item.quantity++;
-      updateCartDisplay();
-    }
-
-    function clearCart() {
-      if (confirm("¿Estás seguro de eliminar todo el carrito?")) {
-        cart = [];
+      if (item && item.quantity > 1) {
+        item.quantity--;
         updateCartDisplay();
       }
     }
 
-    function calculateTotal() {
-      return cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    function increaseQuantity(id) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.quantity++;
+        updateCartDisplay();
+      }
+    }
+
+    function clearCart() {
+      cart = [];
+      updateCartDisplay();
     }
 
     function handleBuy() {
-      const total = parseFloat(calculateTotal());
-      if (total === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      if (total > balance) {
-        alert("Saldo insuficiente para completar la compra.");
-        return;
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+      if (parseFloat(total) === 0) return showToast("Tu carrito está vacío");
+
+      if (parseFloat(total) > balance) {
+        return showToast("Saldo insuficiente");
       }
 
-      balance -= total;
+      balance -= parseFloat(total);
       localStorage.setItem("saldo", balance.toFixed(2));
-
-      const purchase = {
-        date: new Date().toLocaleString(),
-        items: [...cart],
-        total: total
-      };
-
-      const history = JSON.parse(localStorage.getItem("historialCompras") || "[]");
-      history.unshift(purchase);
-      localStorage.setItem("historialCompras", JSON.stringify(history));
+      showToast(`Compra realizada por $${total}. Nuevo saldo: $${balance.toFixed(2)}`);
       cart = [];
       updateCartDisplay();
       updateBalanceDisplay();
-      alert(`Compra realizada por $${total}. Nuevo saldo: $${balance.toFixed(2)}. ¡Gracias por tu compra!`);
     }
 
-    function updateBalanceDisplay() {
-      const balanceDisplay = document.getElementById("balance-display");
-      if (balanceDisplay) balanceDisplay.textContent = `$${balance.toFixed(2)}`;
-    }
-
-    function addBalance(amount) {
-      balance += amount;
-      updateBalanceDisplay();
-      localStorage.setItem("saldo", balance.toFixed(2));
-    }
-
-    // Mostrar primera sección al cargar
-    window.onload = () => {
-      showSection("inicio");
-
+    function populateProducts() {
       const productList = document.getElementById("product-list");
       productList.innerHTML = "";
       products.forEach(p => {
@@ -399,21 +423,23 @@
               <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
               <div class="mt-3 flex justify-between items-center">
                 <input type="number" placeholder="1" min="1" id="qty-${p.id}" class="w-16 border border-gray-300 rounded px-2 py-1 text-center" />
-                <div class="flex items-center space-x-2">
-                  <button onclick="addToCart({...{id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-                  <button onclick="toggleFavorite({id:${p.id},name:'${p.name}',price:${p.price},image:'${p.image}'})" class="px-2 py-2 rounded text-gray-400 hover:text-red-600">
-                    ${isInFavorites(p) ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`}
-                  </button>
+                <div class="flex flex-col space-y-2">
+                  <button onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
+                  <button onclick="buyNow(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
                 </div>
               </div>
             </div>
           </div>`;
       });
+    }
 
+    window.onload = () => {
+      showSection("inicio");
       updateBalanceDisplay();
+      populateProducts();
       loadFavorites();
       updateCartDisplay();
-    }
+    };
   </script>
 </body>
 </html>
